@@ -25,11 +25,11 @@ module "security_settings" {
 module "application" {
   source = "./modules/application"
 
-  name_lt            = var.name_lt
-  type_instance      = var.type_instance
-  sg_instance_id     = [
+  name_lt       = var.name_lt
+  type_instance = var.type_instance
+  sg_instance_id = [
     module.security_settings.sg_private_http_id,
-    module.security_settings.sg_ssh_id]
+  module.security_settings.sg_ssh_id]
   name_asg           = var.name_asg
   public_subnetA_id  = module.networking_settings.subnet_a_id
   public_subnetB_id  = module.networking_settings.subnet_b_id

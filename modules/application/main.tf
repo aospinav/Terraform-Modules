@@ -4,14 +4,14 @@ resource "aws_launch_template" "this" {
   instance_type = var.type_instance
 
   metadata_options {
-    http_endpoint               = "enabled"
-    http_tokens                 = "required"
-    
+    http_endpoint = "enabled"
+    http_tokens   = "required"
+
   }
 
   iam_instance_profile {
     name = "EC2SessionManagerRole"
-    
+
   }
 
   network_interfaces {
@@ -79,7 +79,7 @@ resource "aws_lb" "web_lb" {
     var.public_subnetA_id,
     var.public_subnetB_id,
     var.public_subnetC_id
-    ]
+  ]
 }
 
 resource "aws_lb_listener" "front_end" {
@@ -88,7 +88,7 @@ resource "aws_lb_listener" "front_end" {
   protocol          = "HTTP"
 
   default_action {
-    type = "forward"
+    type             = "forward"
     target_group_arn = aws_lb_target_group.tg.arn
   }
 }
